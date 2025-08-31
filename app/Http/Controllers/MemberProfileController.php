@@ -15,10 +15,7 @@ class MemberProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
-        
-        // Get upcoming tournaments (within next 30 days)
         $tournaments = Tournament::where('start_date', '>=', now())
-            ->where('start_date', '<=', now()->addDays(30))
             ->orderBy('start_date')
             ->get();
 
@@ -32,12 +29,10 @@ class MemberProfileController extends Controller
 
     public function qrCode(User $user)
     {
-        // Only allow users to access their own QR code (for security)
         if (Auth::id() !== $user->id) {
             abort(403, 'Unauthorized');
         }
 
-        // Generate QR code with member information
         $qrData = json_encode([
             'member_id' => $user->id,
             'name' => $user->name,

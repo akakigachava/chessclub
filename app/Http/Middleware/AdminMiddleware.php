@@ -11,12 +11,10 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if user is authenticated and is admin
         if (Auth::check() && Auth::user()->role === 'admin') {
             return $next($request);
         }
-
-        // If not admin, abort with 403 Forbidden
+        
         abort(403, 'Unauthorized access.');
     }
 }
