@@ -10,9 +10,9 @@
                 <path d="M19 22H5a1 1 0 01-1-1v-8a1 1 0 011-1h1V9a1 1 0 011-1h1V6a1 1 0 011-1h1V3a1 1 0 011-1h2a1 1 0 011 1v2h1a1 1 0 011 1v2h1a1 1 0 011 1v3h1a1 1 0 011 1v8a1 1 0 01-1 1zM6 20h12v-6h-1a1 1 0 01-1-1v-3h-1a1 1 0 01-1-1V8h-1a1 1 0 01-1-1V5h-1a1 1 0 01-1-1V4h-2v1a1 1 0 01-1 1H8a1 1 0 01-1 1v2a1 1 0 01-1 1H5v3a1 1 0 01-1 1H6v6z"/>
               </svg>
             </div>
-            Your Member Profile
+            თქვენი პროფილი
           </h2>
-          <p class="text-slate-300 mt-2">Manage your chess club membership and tournament registration</p>
+          <p class="text-slate-300 mt-2">მართეთ თქვენი პროფილი და ტურნირების რეგისტრაცია</p>
         </div>
       </template>
   
@@ -25,7 +25,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
                 </svg>
               </div>
-              <h3 class="text-2xl font-bold text-slate-800 mb-6">Your Member ID</h3>
+              <h3 class="text-2xl font-bold text-slate-800 mb-6">თქვენი QR კოდი</h3>
             </div>
             <div class="flex flex-col items-center">
               <div class="relative group">
@@ -37,7 +37,7 @@
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
-                Download QR Code
+                გადმოწერეთ QR კოდი
               </a>
             </div>
           </div>
@@ -49,23 +49,23 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                 </svg>
               </div>
-              <h3 class="text-2xl font-bold text-slate-800">Account Information</h3>
+              <h3 class="text-2xl font-bold text-slate-800">თქვენი პროფილის ინფორმაცია</h3>
             </div>
             <div class="space-y-6">
               <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
-                <label class="block text-sm font-semibold text-slate-600 mb-1">Full Name</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1">პროფილის სახელი</label>
                 <p class="text-lg font-medium text-slate-900">{{ user.name }}</p>
               </div>
               <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
-                <label class="block text-sm font-semibold text-slate-600 mb-1">Email</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1">ელ-ფოსტა</label>
                 <p class="text-lg font-medium text-slate-900">{{ user.email }}</p>
               </div>
               <div v-if="user.phone" class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
-                <label class="block text-sm font-semibold text-slate-600 mb-1">Phone</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1">ტელეფონის ნომერი</label>
                 <p class="text-lg font-medium text-slate-900">{{ user.phone }}</p>
               </div>
               <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
-                <label class="block text-sm font-semibold text-slate-600 mb-1">Member Since</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1">რეგისტრაციის თარიღი</label>
                 <p class="text-lg font-medium text-slate-900">{{ formatDate(user.created_at) }}</p>
               </div>
             </div>
@@ -78,11 +78,11 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                 </svg>
               </div>
-              <h3 class="text-2xl font-bold text-slate-800">Membership Status</h3>
+              <h3 class="text-2xl font-bold text-slate-800">კლუბის წევრობის სტატუსი</h3>
             </div>
             <div class="space-y-6">
               <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
-                <label class="block text-sm font-semibold text-slate-600 mb-2">Fee Status</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-2">კლუბის საწევროს სტატუსი</label>
                 <div class="flex items-center">
                   <span :class="{
                     'bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-800 border-emerald-200': user.fee_status,
@@ -94,10 +94,10 @@
               </div>
               
               <div v-if="!user.fee_status && feeDeadline" class="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-xl border border-red-200">
-                <label class="block text-sm font-semibold text-red-700 mb-1">Payment Deadline</label>
+                <label class="block text-sm font-semibold text-red-700 mb-1">კლუბის საწევროს გადახდის ბოლო ვადა</label>
                 <p class="text-lg font-medium text-red-900 mb-2">{{ formatDate(feeDeadline) }}</p>
                 <p class="text-red-600 text-sm font-medium">
-                  Please pay before this date to maintain your membership
+                  გთხოვთ გადაიხადოთ კლუბის საწევრო მითითებულ ვადამდე
                 </p>
               </div>
               
@@ -118,8 +118,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="text-3xl font-bold text-slate-800">Upcoming Tournaments</h3>
-                <p class="text-slate-600 mt-1">Register for exciting chess competitions</p>
+                <h3 class="text-3xl font-bold text-slate-800">დაგეგმილი ტურნირები</h3>
+                <p class="text-slate-600 mt-1">სურვილის შემთხვევაში დარეგისტრირდით დაგეგმილ ტურნირებზე</p>
               </div>
             </div>
             
@@ -168,8 +168,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <h4 class="text-2xl font-bold text-slate-600 mb-2">No upcoming tournaments scheduled</h4>
-              <p class="text-lg text-slate-500 mb-6">Check back soon for new tournament announcements!</p>
+              <h4 class="text-2xl font-bold text-slate-600 mb-2">დაგეგმილი ტურნირები არ არის</h4>
+              <p class="text-lg text-slate-500 mb-6">შეამოწმეთ თქვენი პროფილი, რომ არ გამოგრჩეთ დაგეგმილი ტურნირები </p>
               <div class="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mx-auto"></div>
             </div>
           </div>

@@ -9,9 +9,9 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
               </svg>
             </div>
-            Admin Dashboard
+            ადმინის გვერდი
           </h2>
-          <p class="text-slate-300 mt-2">Manage members, tournaments, and club activities</p>
+          <p class="text-slate-300 mt-2">მართეთ კლუბის წევრების რეგისტრაცია, ტურნირები და კლუბის აქტივობები</p>
         </div>
       </template>
   
@@ -29,7 +29,6 @@
             </div>
           </div>
   
-          <!-- Tab Navigation -->
           <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
             <div class="flex border-b border-slate-200 bg-gradient-to-r from-slate-50 to-blue-50">
               <button @click="activeTab = 'members'" 
@@ -38,7 +37,7 @@
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
                 </svg>
-                Members
+                კლუბის წევრები
               </button>
               <button @click="activeTab = 'tournaments'" 
                       :class="{'border-b-4 border-blue-500 text-blue-600 bg-white': activeTab === 'tournaments', 'text-slate-600 hover:text-blue-500': activeTab !== 'tournaments'}" 
@@ -46,7 +45,7 @@
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                 </svg>
-                Tournaments
+                ტურნირები
               </button>
             </div>
           </div>
@@ -62,16 +61,16 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                   </div>
-                  <h3 class="text-2xl font-bold text-slate-800">Pending Registrations</h3>
+                  <h3 class="text-2xl font-bold text-slate-800">რეგისტრაციის მოთხოვნები</h3>
                 </div>
                 
                 <div v-if="pendingUsers && pendingUsers.length" class="overflow-x-auto">
                   <table class="min-w-full">
                     <thead class="bg-gradient-to-r from-slate-100 to-slate-200">
                       <tr>
-                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tl-lg">Name</th>
-                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">Email</th>
-                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">Phone</th>
+                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tl-lg">სახელი</th>
+                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">ელ-ფოსტა</th>
+                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">ტელეფონის ნომერი</th>
                         <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tr-lg">Actions</th>
                       </tr>
                     </thead>
@@ -83,11 +82,11 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                           <button @click="approveUser(user.id)" 
                                   class="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded-lg mr-2 text-sm shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
-                            Approve
+                            დადასტურება
                           </button>
                           <button @click="rejectUser(user.id)" 
                                   class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold py-2 px-4 rounded-lg text-sm shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
-                            Reject
+                            უარყოფა
                           </button>
                         </td>
                       </tr>
@@ -100,7 +99,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                     </svg>
                   </div>
-                  <p class="text-xl font-medium text-slate-500">No pending registrations</p>
+                  <p class="text-xl font-medium text-slate-500">რეგისტრაციის თხოვნები არაა</p>
                 </div>
               </div>
             </div>
@@ -114,17 +113,17 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                   </div>
-                  <h3 class="text-2xl font-bold text-slate-800">Approved Members</h3>
+                  <h3 class="text-2xl font-bold text-slate-800">კლუბის წევრები</h3>
                 </div>
                 
                 <div v-if="approvedUsers && approvedUsers.length" class="overflow-x-auto">
                   <table class="min-w-full">
                     <thead class="bg-gradient-to-r from-slate-100 to-slate-200">
                       <tr>
-                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tl-lg">Name</th>
-                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">Email</th>
-                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">Phone</th>
-                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tr-lg">QR Code</th>
+                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tl-lg">სახელი</th>
+                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">ელ-ფოსტა</th>
+                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">ტელეფონის ნომერი</th>
+                        <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tr-lg">QR კოდი</th>
                       </tr>
                     </thead>
                     <tbody class="bg-white">
@@ -139,7 +138,7 @@
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                             </svg>
-                            Download QR
+                            გადმოწერეთ QR
                           </a>
                         </td>
                       </tr>
@@ -152,7 +151,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
                   </div>
-                  <p class="text-xl font-medium text-slate-500">No approved members yet</p>
+                  <p class="text-xl font-medium text-slate-500">დადასტრებული სტატუსის კლუბის წევრები ჯერ არ არიან</p>
                 </div>
               </div>
             </div>
@@ -167,13 +166,13 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                     </svg>
                   </div>
-                  <h3 class="text-2xl font-bold text-slate-800">Create New Tournament</h3>
+                  <h3 class="text-2xl font-bold text-slate-800">შექმენით ახალი ტურნირი</h3>
                 </div>
                 
                 <form @submit.prevent="createTournament" class="space-y-6">
                   <div>
                     <label class="block text-slate-700 text-sm font-bold mb-2" for="name">
-                      Tournament Name
+                      ტურნირის სახელი
                     </label>
                     <input v-model="tournamentForm.name" 
                            id="name" 
@@ -184,7 +183,7 @@
                   
                   <div>
                     <label class="block text-slate-700 text-sm font-bold mb-2" for="start_date">
-                      Start Date & Time
+                      ტურნირის დაწყების თარიღი
                     </label>
                     <input v-model="tournamentForm.start_date" 
                            id="start_date" 
@@ -195,7 +194,7 @@
                   
                   <div>
                     <label class="block text-slate-700 text-sm font-bold mb-2" for="location">
-                      Location
+                      ადგილმდებაროეობა
                     </label>
                     <input v-model="tournamentForm.location" 
                            id="location" 
@@ -206,7 +205,7 @@
                   
                   <div>
                     <label class="block text-slate-700 text-sm font-bold mb-2" for="description">
-                      Description
+                      ტურნირის დეტალები(აღწერა)
                     </label>
                     <textarea v-model="tournamentForm.description" 
                               id="description" 
@@ -235,7 +234,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                   </div>
-                  <h3 class="text-2xl font-bold text-slate-800">Upcoming Tournaments</h3>
+                  <h3 class="text-2xl font-bold text-slate-800">დაგეგმილი ტურნირები</h3>
                 </div>
                 
                 <div v-if="tournaments && tournaments.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -274,7 +273,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                   </div>
-                  <p class="text-xl font-medium text-slate-500">No upcoming tournaments</p>
+                  <p class="text-xl font-medium text-slate-500">დაგეგმილი ტურნირები არ არის</p>
                 </div>
               </div>
             </div>
