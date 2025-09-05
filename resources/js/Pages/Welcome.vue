@@ -82,13 +82,13 @@ onMounted(() => {
                 <div class="flex items-center space-x-4 transform transition-all duration-500"
                      :class="isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'">
                     <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/20">
-                        <img src="/images/logo.png" alt="ChessClub64 ლოგო" class="w-12 h-12 object-contain">
+                        <img src="/images/logo1.png" alt="ChessClub64 ლოგო" class="w-12 h-12 object-contain">
                     </div>
                     <div>
                         <h1 class="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                            კლუბი64 საქართველო
+                            ჭადრაკის კლუბი 64 საქართველო
                         </h1>
-                        <p class="text-sm text-gray-300">დახურული ჭადრაკის კლუბი ბიზნესმენებისთვის</p>
+                        <p class="text-sm text-gray-300">დახურული კლუბი ბიზნესმენებისა და საქმიანი ადამიანებითვის</p>
                     </div>
                 </div>
 
@@ -119,12 +119,13 @@ onMounted(() => {
                          :class="isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'">
                         <div class="mb-8 flex justify-center">
                             <div class="w-32 h-32 bg-white/10 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-sm border border-white/20 hover:scale-105 transition-all duration-300">
-                                <img src="/images/logo.png" alt="ChessClub64 ლოგო" class="w-24 h-24 object-contain">
+                                <img src="/images/logo1.png" alt="ChessClub64 ლოგო" class="w-24 h-24 object-contain">
                             </div>
                         </div>
                         
-                        <h2 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-tight">
-                            კეთილი იყოს თქვენი მობრძანება საჭადრაკო კლუბ 64-ში!
+                        <h2 class="text-4xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-tight">
+                            <p>კეთილი იყოს თქვენი მობრძანება</p>
+                            <p> საჭადრაკო კლუბ 64-ში!</p>
                         </h2>
                         <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
                             კლუბი შეიქმნა ბიზნესმენებისა და საქმიანი ადამიანებისთვის. ჭადრაკის სიყვარული და მისი მნიშვნელობა ყოველდღიურ ცხოვრებაში არის მთავარი, რაც გვაერთიანებს. დაძაბული სამუშაო დღის შემდეგ, კლუბში თქვენ იპოვით ადგილს განტვირთვისთვისა და მეგობრებთან ერთად დროის საინტერესოდ გატარებისთვის.
