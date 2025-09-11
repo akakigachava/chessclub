@@ -25,7 +25,7 @@ const zoomLogo = () => {
                         <div class="flex">
                             <div class="flex shrink-0 items-center">
                                 <img 
-                                    src="/images/logo.png" 
+                                    src="/images/logo1.png" 
                                     alt="ChessClub64"
                                     class="block h-16 w-auto cursor-pointer transition-transform duration-300 hover:scale-110 active:scale-125 z-70 relative"
                                     @click="zoomLogo"

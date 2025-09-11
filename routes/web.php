@@ -34,6 +34,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/users/{user}/reject', [AdminController::class, 'reject'])->name('admin.users.reject');
 
     Route::post('/tournaments', [AdminController::class, 'createTournament'])->name('admin.tournaments.create');
+
+    Route::put('/admin/tournaments/{tournament}', [AdminController::class, 'updateTournament'])->name('admin.tournaments.update');
+    Route::delete('/admin/tournaments/{tournament}', [AdminController::class, 'destroyTournament'])->name('admin.tournaments.destroy');
 });
 
 

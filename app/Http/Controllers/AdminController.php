@@ -46,4 +46,32 @@ class AdminController extends Controller
 
         return back()->with('success', 'Tournament created!');
     }
+
+
+    public function updateTournament(Request $request, Tournament $tournament)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'location' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+    
+        $tournament->update([
+            'name' => $request->name,
+            'start_date' => $request->start_date,
+            'location' => $request->location,
+            'description' => $request->description,
+        ]);
+    
+        return redirect()->back()->with('success', 'ტურნირი წარმატებით განახლდა!');
+    }
+
+    public function destroyTournament(Tournament $tournament)
+    {
+        $tournament->delete();
+    
+        return redirect()->back()->with('success', 'ტურნირი წარმატებით წაიშალა!');
+    }
+
 }
