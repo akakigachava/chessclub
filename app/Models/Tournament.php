@@ -15,4 +15,21 @@ class Tournament extends Model
         'location',
         'description'
     ];
+
+
+
+    public function registrations()
+{
+    return $this->hasMany(TournamentRegistration::class);
+}
+
+public function isUserRegistered($userId)
+{
+    return $this->registrations()->where('user_id', $userId)->exists();
+}
+
+public function getRegistrationCountAttribute()
+{
+    return $this->registrations()->count();
+}
 }

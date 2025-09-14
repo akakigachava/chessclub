@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberProfileController;
+use App\Http\Controllers\TournamentController;
+use App\Models\Tournament;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -42,5 +44,19 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 Route::get('/member/profile', [MemberProfileController::class, 'show'])->name('member.profile');
 Route::get('/member/qrcode/{user}', [MemberProfileController::class, 'qrCode'])->name('member.qrcode');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/tournaments/{tournament}/register', [TournamentController::class, 'register']);
+    Route::delete('/tournaments/{tournament}/register', [TournamentController::class, 'unregister']);
+});
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/tournaments', function () {
+        $tournaments = Tournament::withCount('registrations')->get();
+        return Inertia::render('Admin/Tournaments', compact('tournaments'));
+    });
+});
 
 require __DIR__.'/auth.php';

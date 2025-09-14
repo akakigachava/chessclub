@@ -12,20 +12,36 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class MemberProfileController extends Controller
 {
-    public function show()
-    {
-        $user = Auth::user();
-        $tournaments = Tournament::where('start_date', '>=', now())
-            ->orderBy('start_date')
-            ->get();
+    public function show(Request $request)
+{
+    $user = $request->user();
+    
+    $tournaments = Tournament::where('start_date', '>=', now())
+        ->orderBy('start_date')
+        ->withCount('registrations')
+        ->withCount(['registrations as is_user_registered' => function($query) use ($user) {
+            $query->where('user_id', $user->id);
+        }])
+        ->get()
+        ->map(function($tournament) {
+            return [
+                'id' => $tournament->id,
+                'name' => $tournament->name,
+                'start_date' => $tournament->start_date,
+                'location' => $tournament->location,
+                'description' => $tournament->description,
+                'registration_count' => $tournament->registrations_count,
+                'is_user_registered' => (bool) $tournament->is_user_registered,
+            ];
+        });
 
-        return Inertia::render('MemberProfile/Show', [
-            'user' => $user,
-            'tournaments' => $tournaments,
-            'feeDeadline' => $this->calculateFeeDeadline($user),
-            'qrCodeUrl' => route('member.qrcode', $user)
-        ]);
-    }
+    return Inertia::render('MemberProfile/Show', [
+        'user' => $user,
+        'tournaments' => $tournaments,
+        'feeDeadline' => $this->calculateFeeDeadline($user), // or use $user->fee_deadline if available
+        'qrCodeUrl' => route('member.qrcode', $user)
+    ]);
+}
 
     public function qrCode(User $user)
     {
