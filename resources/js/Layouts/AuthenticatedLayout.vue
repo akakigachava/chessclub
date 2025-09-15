@@ -40,8 +40,16 @@ const zoomLogo = () => {
                                     :href="route('member.profile')"
                                     :active="route().current('member.profile')"
                                 >
-                                    My Profile
+                                    ჩემი პროფილი
                                 </NavLink>
+                                
+                                <NavLink
+                                    :href="route('rankings.index')"
+                                    :active="route().current('rankings.index')"
+                                >
+                                    კლუბის წევრების რეიტინგ სია
+                                </NavLink>
+                        
                             </div>
                         </div>
 

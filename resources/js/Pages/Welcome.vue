@@ -173,10 +173,10 @@ onMounted(() => {
                 <div class="flex justify-between items-center mb-6">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
-                            <img src="/images/logo.png" alt="ლოგო" class="w-8 h-8 object-contain">
+                            <img src="/images/logo1.png" alt="ლოგო" class="w-8 h-8 object-contain">
                         </div>
                         <h2 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                            {{ authMode === 'login' ? 'მოგესალმებით' : 'შემოუერთდით ChessClub64-ს' }}
+                            {{ authMode === 'login' ? 'მოგესალმებით' : 'შემოუერთდით საჭადრაკო კლუბ 64-ს' }}
                         </h2>
                     </div>
                     <button @click="closeAuthModal" class="text-gray-400 hover:text-white transition-colors hover:scale-110 transform">

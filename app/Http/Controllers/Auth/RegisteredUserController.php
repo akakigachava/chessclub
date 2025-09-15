@@ -25,7 +25,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'phone' => 'required|string|max:20|unique:'.User::class, // Add phone validation
+            'phone' => 'required|string|max:20|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -36,6 +36,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'member', // Set default role
             'status' => 'pending', // Set status to pending
+            'rating' => 1500,
         ]);
 
         event(new Registered($user));

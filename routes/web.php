@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberProfileController;
 use App\Http\Controllers\TournamentController;
 use App\Models\Tournament;
+use App\Http\Controllers\RatingController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -58,5 +59,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return Inertia::render('Admin/Tournaments', compact('tournaments'));
     });
 });
+
+
+Route::get('/rankings', [RatingController::class, 'index'])->name('rankings.index');
+
+//Route::get('/users', [RatingController::class, 'index'])->name('users.index');
+
+
+Route::put('/users/{user}', [RatingController::class, 'update'])->name('users.update');
 
 require __DIR__.'/auth.php';
