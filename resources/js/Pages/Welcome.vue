@@ -29,26 +29,17 @@ const loginForm = useForm({
     remember: false,
 });
 
-const registerForm = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-});
-
 const submitLogin = () => {
     loginForm.post(route('login'), {
         onFinish: () => loginForm.reset('password'),
     });
 };
 
-const submitRegister = () => {
-    registerForm.post(route('register'), {
-        onFinish: () => registerForm.reset('password', 'password_confirmation'),
-    });
-};
-
 const openAuthModal = (mode) => {
+    if (mode === 'register') {
+        window.location.href = route('register');
+        return;
+    }
     authMode.value = mode;
     showAuthModal.value = true;
 };
@@ -56,7 +47,11 @@ const openAuthModal = (mode) => {
 const closeAuthModal = () => {
     showAuthModal.value = false;
     loginForm.reset();
-    registerForm.reset();
+};
+
+const goToRegistration = () => {
+    closeAuthModal();
+    window.location.href = route('register');
 };
 
 onMounted(() => {
@@ -65,7 +60,6 @@ onMounted(() => {
     }, 100);
 });
 </script>
-
 
 <template>
     <Head title="ChessClub64 - ბიზნეს რეგისტრაციის პლატფორმა" />
@@ -104,11 +98,11 @@ onMounted(() => {
                                 class="px-6 py-2 border border-white/20 hover:bg-white/10 rounded-lg transition-all duration-300 hover:shadow-lg hover:border-white/40 hover:scale-105">
                             შესვლა
                         </button>
-                        <button v-if="canRegister"
-                                @click="openAuthModal('register')"
-                                class="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105">
+                        <Link v-if="canRegister"
+                              :href="route('register')"
+                              class="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105">
                             რეგისტრაცია
-                        </button>
+                        </Link>
                     </template>
                 </nav>
             </header>
@@ -129,7 +123,6 @@ onMounted(() => {
                         </h2>
                         <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
                             კლუბი შეიქმნა ბიზნესმენებისა და საქმიანი ადამიანებისთვის. ჭადრაკის სიყვარული და მისი მნიშვნელობა ყოველდღიურ ცხოვრებაში არის მთავარი, რაც გვაერთიანებს. დაძაბული სამუშაო დღის შემდეგ, კლუბში თქვენ იპოვით ადგილს განტვირთვისთვისა და მეგობრებთან ერთად დროის საინტერესოდ გატარებისთვის.
-                            
                         </p>
                         <div>
                             <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -138,16 +131,14 @@ onMounted(() => {
                         </div>
                     </div>
 
-                   
-
                     <div v-if="canLogin && !$page.props.auth.user" class="transform transition-all duration-700 delay-800"
                          :class="isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'">
                         <div class="mb-6">
-                            <button @click="openAuthModal('register')"
-                                    class="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl text-lg font-semibold transition-all duration-300 shadow-2xl hover:shadow-purple-500/25 transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden group">
+                            <Link :href="route('register')"
+                                  class="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl text-lg font-semibold transition-all duration-300 shadow-2xl hover:shadow-purple-500/25 transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden group inline-block">
                                 <span class="relative z-10">დაიწყეთ დღესვე</span>
                                 <div class="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            </button>
+                            </Link>
                         </div>
                         <p class="text-sm text-gray-400">
                             შემოუერთდით ჩვენს ბიზნეს საზოგადოებას • სწრაფი რეგისტრაცია • პროფესიონალური მხარდაჭერა
@@ -168,7 +159,8 @@ onMounted(() => {
             </footer>
         </div>
 
-        <div v-if="showAuthModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+        <!-- Login Modal Only -->
+        <div v-if="showAuthModal && authMode === 'login'" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
             <div class="bg-slate-800/90 backdrop-blur-md rounded-2xl p-8 w-full max-w-md mx-4 border border-white/20 shadow-2xl animate-slide-up">
                 <div class="flex justify-between items-center mb-6">
                     <div class="flex items-center space-x-3">
@@ -176,7 +168,7 @@ onMounted(() => {
                             <img src="/images/logo1.png" alt="ლოგო" class="w-8 h-8 object-contain">
                         </div>
                         <h2 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                            {{ authMode === 'login' ? 'მოგესალმებით' : 'შემოუერთდით საჭადრაკო კლუბ 64-ს' }}
+                            მოგესალმებით
                         </h2>
                     </div>
                     <button @click="closeAuthModal" class="text-gray-400 hover:text-white transition-colors hover:scale-110 transform">
@@ -186,9 +178,9 @@ onMounted(() => {
                     </button>
                 </div>
 
-                <form v-if="authMode === 'login'" @submit.prevent="submitLogin" class="space-y-6">
+                <form @submit.prevent="submitLogin" class="space-y-6">
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">ელფოსტა</label>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">ელექტრონული ფოსტა</label>
                         <input v-model="loginForm.email" type="email" required
                                class="w-full px-4 py-3 bg-slate-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 hover:bg-slate-700/70"
                                placeholder="შეიყვანეთ ელფოსტა">
@@ -215,56 +207,10 @@ onMounted(() => {
                     </button>
 
                     <div class="text-center">
-                        <button type="button" @click="authMode = 'register'"
-                                class="text-purple-400 hover:text-purple-300 text-sm transition-colors hover:underline">
+                        <Link :href="route('register')"
+                              class="text-purple-400 hover:text-purple-300 text-sm transition-colors hover:underline">
                             არ გაქვთ ანგარიში? დარეგისტრირდით აქ
-                        </button>
-                    </div>
-                </form>
-
-                <form v-if="authMode === 'register'" @submit.prevent="submitRegister" class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">სრული სახელი</label>
-                        <input v-model="registerForm.name" type="text" required
-                               class="w-full px-4 py-3 bg-slate-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 hover:bg-slate-700/70"
-                               placeholder="შეიყვანეთ სრული სახელი">
-                        <div v-if="registerForm.errors.name" class="text-red-400 text-sm mt-1">{{ registerForm.errors.name }}</div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">ელფოსტის მისამართი</label>
-                        <input v-model="registerForm.email" type="email" required
-                               class="w-full px-4 py-3 bg-slate-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 hover:bg-slate-700/70"
-                               placeholder="შეიყვანეთ ელფოსტის მისამართი">
-                        <div v-if="registerForm.errors.email" class="text-red-400 text-sm mt-1">{{ registerForm.errors.email }}</div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">პაროლი</label>
-                        <input v-model="registerForm.password" type="password" required
-                               class="w-full px-4 py-3 bg-slate-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 hover:bg-slate-700/70"
-                               placeholder="შექმენით ძლიერი პაროლი">
-                        <div v-if="registerForm.errors.password" class="text-red-400 text-sm mt-1">{{ registerForm.errors.password }}</div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">პაროლის დადასტურება</label>
-                        <input v-model="registerForm.password_confirmation" type="password" required
-                               class="w-full px-4 py-3 bg-slate-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 hover:bg-slate-700/70"
-                               placeholder="დაადასტურეთ პაროლი">
-                        <div v-if="registerForm.errors.password_confirmation" class="text-red-400 text-sm mt-1">{{ registerForm.errors.password_confirmation }}</div>
-                    </div>
-
-                    <button type="submit" :disabled="registerForm.processing"
-                            class="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transform">
-                        {{ registerForm.processing ? 'ანგარიშის შექმნა...' : 'ანგარიშის შექმნა' }}
-                    </button>
-
-                    <div class="text-center">
-                        <button type="button" @click="authMode = 'login'"
-                                class="text-purple-400 hover:text-purple-300 text-sm transition-colors hover:underline">
-                            უკვე გაქვთ ანგარიში? შედით აქ
-                        </button>
+                        </Link>
                     </div>
                 </form>
             </div>

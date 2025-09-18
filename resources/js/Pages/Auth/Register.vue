@@ -23,7 +23,7 @@ const submit = () => {
 <template>
     <form @submit.prevent="submit">
         <div>
-            <InputLabel for="name" value="Name" />
+            <InputLabel for="name" value="სახელი" />
             <TextInput
                 id="name"
                 v-model="form.name"
@@ -37,7 +37,7 @@ const submit = () => {
         </div>
 
         <div class="mt-4">
-            <InputLabel for="email" value="Email" />
+            <InputLabel for="email" value="ელექტრონული ფოსტა" />
             <TextInput
                 id="email"
                 v-model="form.email"
@@ -51,7 +51,7 @@ const submit = () => {
 
         <!-- Add phone field -->
         <div class="mt-4">
-            <InputLabel for="phone" value="Phone" />
+            <InputLabel for="phone" value="ტელეფონის ნომერი" />
             <TextInput
                 id="phone"
                 v-model="form.phone"
@@ -64,7 +64,7 @@ const submit = () => {
         </div>
 
         <div class="mt-4">
-            <InputLabel for="password" value="Password" />
+            <InputLabel for="password" value="პაროლი" />
             <TextInput
                 id="password"
                 v-model="form.password"
@@ -77,7 +77,7 @@ const submit = () => {
         </div>
 
         <div class="mt-4">
-            <InputLabel for="password_confirmation" value="Confirm Password" />
+            <InputLabel for="password_confirmation" value="დაადასტურეთ პაროლი" />
             <TextInput
                 id="password_confirmation"
                 v-model="form.password_confirmation"
@@ -94,12 +94,51 @@ const submit = () => {
                 :href="route('login')"
                 class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-                Already registered?
+                დარეგისტირებული ხართ?
             </Link>
 
             <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Register
+                რეგისტრაცია
             </PrimaryButton>
         </div>
     </form>
 </template>
+
+
+
+
+<style scoped>
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+}
+
+input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+button {
+    background: #4f46e5;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #4338ca;
+}
+</style>

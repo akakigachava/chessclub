@@ -36,19 +36,28 @@ const zoomLogo = () => {
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
-                                <NavLink
+                                <ResponsiveNavLink
                                     :href="route('member.profile')"
                                     :active="route().current('member.profile')"
                                 >
                                     ჩემი პროფილი
-                                </NavLink>
+                                </ResponsiveNavLink>
                                 
-                                <NavLink
+                                <ResponsiveNavLink
                                     :href="route('rankings.index')"
                                     :active="route().current('rankings.index')"
                                 >
                                     კლუბის წევრების რეიტინგ სია
-                                </NavLink>
+                                </ResponsiveNavLink>
+
+
+                                <ResponsiveNavLink
+                                    v-if="$page.props.auth.user.role === 'admin'"
+                                    :href="route('admin.dashboard')"
+                                    :active="route().current('admin.dashboard')"
+                                    >
+                                    ადმინის ფუნქციები
+                                </ResponsiveNavLink>
                         
                             </div>
                         </div>

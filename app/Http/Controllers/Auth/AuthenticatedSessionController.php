@@ -27,14 +27,31 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+    public function store(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+
+        if ($user->status !== 'approved') {
+            Auth::logout();
+            return back()->withErrors([
+                'email' => 'თქვენი მოთხოვნა გაგზავნილია.გთხოვთ დაელოდოთ მოთხოვნის დადასტურებას.',
+            ]);
+        }
 
         $request->session()->regenerate();
-
-        return redirect()->intended(route('member.profile', absolute: false));
+        return redirect()->intended('/member/profile');
     }
+
+    return back()->withErrors([
+        'email' => 'Invalid credentials.',
+    ]);
+}
 
     /**
      * Destroy an authenticated session.

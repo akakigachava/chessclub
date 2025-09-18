@@ -59,7 +59,7 @@
               <p class="text-lg font-medium text-slate-900">{{ user.name }}</p>
             </div>
             <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
-              <label class="block text-sm font-semibold text-slate-600 mb-1">ელ-ფოსტა</label>
+              <label class="block text-sm font-semibold text-slate-600 mb-1">ელექტრონული ფოსტა</label>
               <p class="text-lg font-medium text-slate-900">{{ user.email }}</p>
             </div>
             <div v-if="user.phone" class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
@@ -69,6 +69,10 @@
             <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
               <label class="block text-sm font-semibold text-slate-600 mb-1">რეგისტრაციის თარიღი</label>
               <p class="text-lg font-medium text-slate-900">{{ formatDate(user.created_at) }}</p>
+            </div>
+            <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
+              <label class="block text-sm font-semibold text-slate-600 mb-1">თქვენი რეიტინგი</label>
+              <p class="text-lg font-medium text-slate-900">{{ user.rating}}</p>
             </div>
           </div>
         </div>
@@ -97,10 +101,8 @@
             </div>
             
             <div v-if="!user.fee_status && feeDeadline" class="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-xl border border-red-200">
-              <label class="block text-sm font-semibold text-red-700 mb-1">კლუბის საწევროს გადახდის ბოლო ვადა</label>
-              <p class="text-lg font-medium text-red-900 mb-2">{{ formatDate(feeDeadline) }}</p>
               <p class="text-red-600 text-sm font-medium">
-                გთხოვთ გადაიხადოთ კლუბის საწევრო მითითებულ ვადამდე
+                {{ paymentMessage }}
               </p>
             </div>
             
@@ -111,7 +113,6 @@
           </div>
         </div>
         
-        <!-- Tournaments Section -->
         <div class="md:col-span-3 bg-white overflow-hidden shadow-xl sm:rounded-2xl p-8 border border-slate-200 hover:shadow-2xl transition-all duration-300">
           <div class="flex items-center mb-8">
             <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
@@ -223,71 +224,84 @@
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
-user: {
-  type: Object,
-  required: true
-},
-tournaments: {
-  type: Array,
-  default: () => []
-},
-feeDeadline: {
-  type: String,
-  default: null
-},
-qrCodeUrl: {
-  type: String,
-  required: true
-}
+  user: {
+    type: Object,
+    required: true
+  },
+  tournaments: {
+    type: Array,
+    default: () => []
+  },
+  feeDeadline: {
+    type: String,
+    default: null
+  },
+  qrCodeUrl: {
+    type: String,
+    required: true
+  }
 });
 
 const registering = ref(null);
 
-const registerForTournament = (tournamentId) => {
-if (registering.value) return;
 
-registering.value = tournamentId;
-
-router.post(`/tournaments/${tournamentId}/register`, {}, {
-  onSuccess: () => {
-    registering.value = null;
-  },
-  onError: (errors) => {
-    registering.value = null;
-    console.error('Registration failed:', errors);
-  }
+const registrationDay = computed(() => {
+  if (!props.user.created_at) return null;
+  return new Date(props.user.created_at).getDate();
 });
+
+
+const paymentMessage = computed(() => {
+  if (!registrationDay.value) return 'გთხოვთ გადაიხადოთ კლუბის საწევრო მითითებულ ვადამდე';
+  
+  return `გთხოვთ დაფაროთ კლუბის საწევრო ყოველი თვის ${registrationDay.value} -მდე`;
+});
+
+const registerForTournament = (tournamentId) => {
+  if (registering.value) return;
+
+  registering.value = tournamentId;
+
+  router.post(`/tournaments/${tournamentId}/register`, {}, {
+    onSuccess: () => {
+      registering.value = null;
+    },
+    onError: (errors) => {
+      registering.value = null;
+      console.error('Registration failed:', errors);
+    }
+  });
 };
 
 const unregisterFromTournament = (tournamentId) => {
-if (registering.value) return;
+  if (registering.value) return;
 
-registering.value = tournamentId;
+  registering.value = tournamentId;
 
-router.delete(`/tournaments/${tournamentId}/register`, {
-  onSuccess: () => {
-    registering.value = null;
-  },
-  onError: (errors) => {
-    registering.value = null;
-    console.error('Unregistration failed:', errors);
-  }
-});
+  router.delete(`/tournaments/${tournamentId}/register`, {
+    onSuccess: () => {
+      registering.value = null;
+    },
+    onError: (errors) => {
+      registering.value = null;
+      console.error('Unregistration failed:', errors);
+    }
+  });
 };
 
 const formatDate = (dateString) => {
-if (!dateString) return 'N/A';
+  if (!dateString) return 'N/A';
 
-const date = new Date(dateString);
-return date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit'
-});
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
 };
 </script>
