@@ -8,7 +8,11 @@ use Inertia\Inertia;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Tournament;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\SvgWriter;
+
+
+
 
 class MemberProfileController extends Controller
 {
@@ -43,29 +47,34 @@ class MemberProfileController extends Controller
     ]);
 }
 
-    public function qrCode(User $user)
-    {
-        if (Auth::id() !== $user->id) {
-            abort(403, 'Unauthorized');
-        }
-
-        $qrData = json_encode([
-            'member_id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'status' => $user->status ?? 'active',
-            'generated_at' => now()->toISOString()
-        ]);
-
-        $qrCode = QrCode::format('png')
-            ->size(200)
-            ->margin(2)
-            ->generate($qrData);
-
-        return response($qrCode, 200)
-            ->header('Content-Type', 'image/png')
-            ->header('Content-Disposition', 'inline; filename="member-qr-code.png"');
+public function qrCode(User $user)
+{
+    if (Auth::id() !== $user->id) {
+        abort(403, 'Unauthorized');
     }
+
+    $qrData = json_encode([
+        'member_id'    => $user->id,
+        'name'         => $user->name,
+        'email'        => $user->email,
+        'status'       => $user->status ?? 'active',
+        'generated_at' => now()->toISOString(),
+    ], JSON_UNESCAPED_UNICODE);
+
+    // ✅ Create Builder instance directly
+    $builder = new Builder(
+        writer: new SvgWriter(),
+        data: $qrData,
+        size: 200,
+        margin: 10
+    );
+
+    $result = $builder->build();
+
+    return response($result->getString(), 200)
+        ->header('Content-Type', $result->getMimeType());
+}
+
 
     private function calculateFeeDeadline($user)
     {
