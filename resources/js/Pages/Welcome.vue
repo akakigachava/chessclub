@@ -119,7 +119,7 @@ onMounted(() => {
                         
                         <h2 class="text-4xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-tight">
                             <p>კეთილი იყოს თქვენი მობრძანება</p>
-                            <p> საჭადრაკო კლუბ 64-ში!</p>
+                            <p> ჭადრაკის კლუბ 64-ში!</p>
                         </h2>
                         <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
                             კლუბი შეიქმნა ბიზნესმენებისა და საქმიანი ადამიანებისთვის. ჭადრაკის სიყვარული და მისი მნიშვნელობა ყოველდღიურ ცხოვრებაში არის მთავარი, რაც გვაერთიანებს. დაძაბული სამუშაო დღის შემდეგ, კლუბში თქვენ იპოვით ადგილს განტვირთვისთვისა და მეგობრებთან ერთად დროის საინტერესოდ გატარებისთვის.
