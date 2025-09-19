@@ -61,6 +61,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 
+
 Route::get('/rankings', [RatingController::class, 'index'])->name('rankings.index');
 
 //Route::get('/users', [RatingController::class, 'index'])->name('users.index');
