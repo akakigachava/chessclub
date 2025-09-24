@@ -11,7 +11,9 @@ class RatingController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('rating', 'desc')->get();
+        $users = User::where('status', 'approved')
+        ->orderBy('rating', 'desc')
+        ->get();
         
         return Inertia::render('Ranking/Index', [
             'users' => $users

@@ -129,6 +129,12 @@ onMounted(() => {
                                 ჭადრაკი - ლიდერების არჩევანი!
                             </p>
                         </div>
+
+                        <div>
+                            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                                კლუბის საწევრო : 300  ₾ თვეში; ხოლო ერთჯერადი გადახდით - 3000 ₾ წელიწადში
+                            </p>
+                        </div>
                     </div>
 
                     <div v-if="canLogin && !$page.props.auth.user" class="transform transition-all duration-700 delay-800"
