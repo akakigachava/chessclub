@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Tournament;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -72,6 +73,17 @@ class AdminController extends Controller
         $tournament->delete();
     
         return redirect()->back()->with('success', 'ტურნირი წარმატებით წაიშალა!');
+    }
+
+    public function toggleVip(User $user)
+    {
+        log::info("hi");
+        $user->is_vip = !$user->is_vip;
+        $user->save();
+
+        return back()->with('success', $user->is_vip 
+            ? 'მომხმარებელს მიენიჭა VIP სტატუსი!' 
+            : 'VIP სტატუსი მოიხსნა!');
     }
 
 }

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'role',
         'status',
         'rating',
+        'is_vip'
     ];
     
 
@@ -48,7 +49,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'rating' => 'integer'
+            'rating' => 'integer',
+            'is_vip' => 'boolean'
         ];
     }
 }

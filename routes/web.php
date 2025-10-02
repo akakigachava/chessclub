@@ -40,6 +40,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::put('/admin/tournaments/{tournament}', [AdminController::class, 'updateTournament'])->name('admin.tournaments.update');
     Route::delete('/admin/tournaments/{tournament}', [AdminController::class, 'destroyTournament'])->name('admin.tournaments.destroy');
+
+    Route::patch('/users/{user}/toggle-vip', [AdminController::class, 'toggleVip'])
+    ->name('admin.users.toggle-vip');
 });
 
 

@@ -42,7 +42,7 @@ class MemberProfileController extends Controller
     return Inertia::render('MemberProfile/Show', [
         'user' => $user,
         'tournaments' => $tournaments,
-        'feeDeadline' => $this->calculateFeeDeadline($user), // or use $user->fee_deadline if available
+        'feeDeadline' => $this->calculateFeeDeadline($user), 
         'qrCodeUrl' => route('member.qrcode', $user)
     ]);
 }
@@ -61,7 +61,6 @@ public function qrCode(User $user)
         'generated_at' => now()->toISOString(),
     ], JSON_UNESCAPED_UNICODE);
 
-    // ✅ Create Builder instance directly
     $builder = new Builder(
         writer: new SvgWriter(),
         data: $qrData,

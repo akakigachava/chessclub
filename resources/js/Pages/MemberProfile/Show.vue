@@ -74,6 +74,11 @@
               <label class="block text-sm font-semibold text-slate-600 mb-1">თქვენი რეიტინგი</label>
               <p class="text-lg font-medium text-slate-900">{{ user.rating}}</p>
             </div>
+
+            <div v-if="user.is_vip==1" class="bg-gradient-to-r from-slate-50 to-blue-50 p-4 rounded-xl border border-slate-100">
+              <label class="block text-sm font-semibold text-slate-600 mb-1">თქვენი სტატუსი</label>
+              <p class="text-lg font-medium text-slate-900">კლუბის საპატიო წევრი</p>
+            </div>
           </div>
         </div>
 
@@ -100,7 +105,7 @@
               </div>
             </div>
             
-            <div v-if="!user.fee_status && feeDeadline" class="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-xl border border-red-200">
+            <div v-if="!user.fee_status && feeDeadline && user.is_vip==0" class="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-xl border border-red-200">
               <p class="text-red-600 text-sm font-medium">
                 {{ paymentMessage }}
               </p>

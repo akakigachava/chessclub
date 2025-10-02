@@ -44,9 +44,7 @@ class RegisteredUserController extends Controller
 
         // Don't login automatically - wait for admin approval
         // Auth::login($user);
-      
-
-
+     
         return redirect()->route('login')->with('status', 'Registration submitted! Wait for admin approval.');
     }
 }
