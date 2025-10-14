@@ -71,7 +71,8 @@ public function qrCode(User $user)
     $result = $builder->build();
 
     return response($result->getString(), 200)
-        ->header('Content-Type', $result->getMimeType());
+    ->header('Content-Type', 'image/svg+xml')
+    ->header('Content-Disposition', 'attachment; filename="chessclub-member-qr.svg"');
 }
 
 
