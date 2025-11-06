@@ -122,7 +122,7 @@ onMounted(() => {
                             <p> ჭადრაკის კლუბ 64-ში!</p>
                         </h2>
                         <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                            კლუბი შეიქმნა ბიზნესმენებისა და საქმიანი ადამიანებისთვის. ჭადრაკის სიყვარული და მისი მნიშვნელობა ყოველდღიურ ცხოვრებაში არის მთავარი, რაც გვაერთიანებს. დაძაბული სამუშაო დღის შემდეგ, კლუბში თქვენ იპოვით ადგილს განტვირთვისთვისა და მეგობრებთან ერთად დროის საინტერესოდ გატარებისთვის.
+                            კლუბი შეიქმნა ბიზნესმენებისა და საქმიანი ადამიანებისთვის. ჭადრაკის სიყვარული და მისი მნიშვნელობა ყოველდღიურ ცხოვრებაში არის მთავარი, რაც გვაერთიანებს. კლუბში თქვენ იპოვით ადგილს განტვირთვისთვისა და მეგობრებთან ერთად დროის საინტერესოდ გატარებისთვის.
                         </p>
                         <div>
                             <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -130,10 +130,69 @@ onMounted(() => {
                             </p>
                         </div>
 
-                        <div>
-                            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                                კლუბის საწევრო : 300  ₾ თვეში; ერთჯერადი გადახდით - 3000₾ წელიწადში
-                            </p>
+                        <div class="text-left max-w-3xl mx-auto space-y-6 mb-8">
+                            <h3 class="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                                აირჩიეთ კლუბის წევრობის სტატუსი
+                            </h3>
+                            
+                            <!-- საბაზისო -->
+                            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+                                <h4 class="text-xl font-bold text-purple-400 mb-2">საბაზისო - 150₾ თვეში / 1500₾ წელიწადში ᲔᲠᲗᲯᲔᲠᲐᲓᲘ ᲒᲐᲓᲐᲮᲓᲘᲗ</h4>
+                                <ul class="text-gray-300 space-y-2 text-sm">
+                                    <li>• წვდომა ჭადრაკის მაგიდებზე და კომპლექტზე</li>
+                                    <li>• 1 შესავალი გაკვეთილი თვეში</li>
+                                    <li>• კვირის ღონისძიებაზე უფასო დასწრება</li>
+                                    <li>• ფაზლების ამოხსნაში მონაწილეობა</li>
+                                    <li>• პერსონალური QR კოდი</li>
+                                    <li>• პროგრესის ბარათი და ბეჯები</li>
+                                    <li>• ლოიალურობის პროგრამაში ჩართვა</li>
+                                    <li>• 10% ფასდაკლება რესტორანში</li>
+                                </ul>
+                            </div>
+
+                            <!-- პრემიუმი -->
+                            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-blue-500/50 transition-all duration-300">
+                                <h4 class="text-xl font-bold text-blue-400 mb-2">პრემიუმი - 250₾ თვეში / 2500₾ წელიწადში</h4>
+                                <ul class="text-gray-300 space-y-2 text-sm">
+                                    <li>• საბაზისო-ს ყველა უპირატესობა</li>
+                                    <li>• უფასო მონაწილეობა ტურნირებზე</li>
+                                    <li>• ჯგუფური გაკვეთილები თვეში ორჯერ</li>
+                                    <li>• მეგობრის მოყვანის უფლება თვეში ერთხელ</li>
+                                    <li>• პრიორიტეტული მაგიდის ჯავშანი</li>
+                                    <li>• ჭადრაკი & ღვინო / ჭადრაკი & ჩაი საღამოებზე წვდომა</li>
+                                    <li>• ლოიალურობის ქულების სისტემა</li>
+                                    <li>• მცირე პარტნიორული ფასდაკლებები</li>
+                                    <li>• სპეციალური ბეიჯი</li>
+                                    <li>• 15% ფასდაკლება რესტორანში</li>
+                                </ul>
+                            </div>
+
+                            <!-- ექსკლუზივი -->
+                            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-yellow-500/50 transition-all duration-300">
+                                <h4 class="text-xl font-bold text-yellow-400 mb-2">ექსკლუზივი - 400₾ თვეში / 4000₾ წელიწადში</h4>
+                                <ul class="text-gray-300 space-y-2 text-sm">
+                                    <li>• პრემიუმი-ს ყველა უპირატესობა</li>
+                                    <li>• ინდივიდუალური გაკვეთილი თვეში ერთხელ</li>
+                                    <li>• VIP ზონა და მაგიდების პრიორიტეტული წვდომა</li>
+                                    <li>• დახურული საღამოები და სპეციალური ღონისძიებები</li>
+                                    <li>• ექსკლუზივი წევრების საღამოები</li>
+                                    <li>• მასტერკლასი/სეანსი მოწვეული დიდოსტატთან</li>
+                                    <li>• „წევრი +1" სპეციალურ საღამოზე</li>
+                                    <li>• ჭადრაკის ღვინო საჩუქრად</li>
+                                    <li>• პერსონალიზირებული ბარათი ან მეტალის ბეჯი</li>
+                                    <li>• პრიორიტეტული მაგიდისა და სივრცის დაჯავშნა</li>
+                                    <li>• გაფართოებული პარტნიორული ფასდაკლებები</li>
+                                    <li>• სასმელი კლუბში მოსვლისას</li>
+                                    <li>• ექსკლუზიური ლოიალურობის სტატუსი</li>
+                                    <li>• 20% ფასდაკლება რესტორანში</li>
+                                </ul>
+                            </div>
+
+                            <!-- დღის სტუმარი -->
+                            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300">
+                                <h4 class="text-xl font-bold text-green-400 mb-2">დღის სტუმარი - 60₾</h4>
+                                <p class="text-gray-300 text-sm">ერთჯერადი დასწრება კლუბის ღონისძიებაზე</p>
+                            </div>
                         </div>
                     </div>
 
