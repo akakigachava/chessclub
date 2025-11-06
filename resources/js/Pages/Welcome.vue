@@ -137,7 +137,7 @@ onMounted(() => {
                             
                             <!-- საბაზისო -->
                             <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
-                                <h4 class="text-xl font-bold text-purple-400 mb-2">საბაზისო - 150₾ თვეში / 1500₾ წელიწადში ᲔᲠᲗᲯᲔᲠᲐᲓᲘ ᲒᲐᲓᲐᲮᲓᲘᲗ</h4>
+                                <h4 class="text-xl font-bold text-purple-400 mb-2">საბაზისო - 150₾ თვეში / 1500₾ წელიწადში ერთჯერადი გადახდით</h4>
                                 <ul class="text-gray-300 space-y-2 text-sm">
                                     <li>• წვდომა ჭადრაკის მაგიდებზე და კომპლექტზე</li>
                                     <li>• 1 შესავალი გაკვეთილი თვეში</li>
@@ -152,7 +152,7 @@ onMounted(() => {
 
                             <!-- პრემიუმი -->
                             <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-blue-500/50 transition-all duration-300">
-                                <h4 class="text-xl font-bold text-blue-400 mb-2">პრემიუმი - 250₾ თვეში / 2500₾ წელიწადში</h4>
+                                <h4 class="text-xl font-bold text-blue-400 mb-2">პრემიუმი - 250₾ თვეში / 2500₾ წელიწადში ერთჯერადი გადახდით</h4>
                                 <ul class="text-gray-300 space-y-2 text-sm">
                                     <li>• საბაზისო-ს ყველა უპირატესობა</li>
                                     <li>• უფასო მონაწილეობა ტურნირებზე</li>
@@ -169,7 +169,7 @@ onMounted(() => {
 
                             <!-- ექსკლუზივი -->
                             <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-yellow-500/50 transition-all duration-300">
-                                <h4 class="text-xl font-bold text-yellow-400 mb-2">ექსკლუზივი - 400₾ თვეში / 4000₾ წელიწადში</h4>
+                                <h4 class="text-xl font-bold text-yellow-400 mb-2">ექსკლუზივი - 400₾ თვეში / 4000₾ წელიწადში ერთჯერადი გადახდით</h4>
                                 <ul class="text-gray-300 space-y-2 text-sm">
                                     <li>• პრემიუმი-ს ყველა უპირატესობა</li>
                                     <li>• ინდივიდუალური გაკვეთილი თვეში ერთხელ</li>
