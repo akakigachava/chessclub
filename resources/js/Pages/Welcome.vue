@@ -82,7 +82,7 @@ onMounted(() => {
                         <h1 class="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                             ჭადრაკის კლუბი 64 საქართველო
                         </h1>
-                        <p class="text-sm text-gray-300">დახურული კლუბი ბიზნესმენებისა და საქმიანი ადამიანებითვის</p>
+                        <p class="text-sm text-gray-300">დახურული კლუბი ბიზნესმენებისა და საქმიანი ადამიანებისთვის</p>
                     </div>
                 </div>
 

@@ -77,7 +77,7 @@ const toggleVip = (userId) => {
   <div class="min-h-screen bg-gray-100 p-6">
     <h1 class="text-2xl font-bold mb-6">კლუბის წევრების რეიტინგ სია</h1>
     
-    
+    <!-- Search section (keep as is) -->
     <div class="mb-6 bg-white p-4 rounded-lg shadow">
       <div class="flex items-center gap-4">
         <div class="flex-1">
@@ -107,7 +107,6 @@ const toggleVip = (userId) => {
         </div>
       </div>
       
-    
       <div v-if="searchQuery" class="mt-3 text-sm text-gray-600">
         <span v-if="filteredUsers.length > 0">
           ნაპოვნია {{ filteredUsers.length }} შედეგი "{{ searchQuery }}" ძიებისთვის
@@ -118,7 +117,7 @@ const toggleVip = (userId) => {
       </div>
     </div>
 
-   
+    <!-- Table -->
     <div class="bg-white shadow rounded-lg overflow-hidden">
       <table class="w-full border-collapse">
         <thead class="bg-gray-200 text-left">
@@ -126,13 +125,14 @@ const toggleVip = (userId) => {
             <th class="p-3">#</th>
             <th class="p-3">სახელი</th>
             <th class="p-3">რეიტინგი</th>
+            <th v-if="authUser?.role === 'admin'" class="p-3">პაკეტი</th> <!-- ADD THIS -->
             <th class="p-3">სტატუსი</th>
             <th v-if="authUser?.role === 'admin'" class="p-3">მოქმედებები</th>
           </tr>
         </thead>
         <tbody>
           <tr v-if="filteredUsers.length === 0 && searchQuery" class="border-b">
-            <td colspan="5" class="p-8 text-center text-gray-500">
+            <td :colspan="authUser?.role === 'admin' ? 6 : 4" class="p-8 text-center text-gray-500">
               <div class="flex flex-col items-center">
                 <svg class="w-12 h-12 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -166,6 +166,17 @@ const toggleVip = (userId) => {
               <span v-if="searchQuery" v-html="highlightSearchTerm(user.rating.toString(), searchQuery)"></span>
               <span v-else>{{ user.rating }}</span>
             </td>
+            
+            <!-- ADD THIS COLUMN -->
+            <td v-if="authUser?.role === 'admin'" class="p-3">
+              <span 
+                :class="getMembershipBadgeClass(user.membership_type)"
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium"
+              >
+                {{ user.membership_type }}
+              </span>
+            </td>
+            
             <td class="p-3">
               <span 
                 :class="user.is_vip ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'"
@@ -199,6 +210,7 @@ const toggleVip = (userId) => {
       </table>
     </div>
 
+    <!-- Edit form modal (keep as is) -->
     <div v-if="showEditForm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div class="bg-white p-6 rounded-lg w-96">
         <h2 class="text-xl font-bold mb-4">მონაცემთა შეცვლა</h2>
@@ -260,6 +272,15 @@ export default {
       
       const regex = new RegExp(`(${searchTerm})`, 'gi')
       return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>')
+    },
+
+    getMembershipBadgeClass(membershipType) {
+      const classes = {
+        'საბაზისო': 'bg-gray-100 text-gray-800',
+        'პრემიუმი': 'bg-blue-100 text-blue-800',
+        'ექსკლუზივი': 'bg-purple-100 text-purple-800'
+      }
+      return classes[membershipType] || 'bg-gray-100 text-gray-800'
     }
   }
 }

@@ -25,7 +25,8 @@ class User extends Authenticatable
         'role',
         'status',
         'rating',
-        'is_vip'
+        'is_vip',
+        'membership_type'
     ];
     
 

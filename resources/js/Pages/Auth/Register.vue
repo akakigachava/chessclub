@@ -9,6 +9,7 @@ const form = useForm({
     name: '',
     email: '',
     phone: '', // Add phone field
+    membership_type: '',
     password: '',
     password_confirmation: '',
 });
@@ -49,7 +50,6 @@ const submit = () => {
             <InputError class="mt-2" :message="form.errors.email" />
         </div>
 
-        <!-- Add phone field -->
         <div class="mt-4">
             <InputLabel for="phone" value="ტელეფონის ნომერი" />
             <TextInput
@@ -88,6 +88,22 @@ const submit = () => {
             />
             <InputError class="mt-2" :message="form.errors.password_confirmation" />
         </div>
+
+
+        <div class="mt-4">
+        <InputLabel for="membership_type" value="აირჩიეთ თქვენთვის სასურველი პაკეტი" />
+        <select
+            id="membership_type"
+            v-model="form.membership_type"
+            class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+            required
+        >
+        <option value="საბაზისო">საბაზისო</option>
+        <option value="პრემიუმი">პრემიუმი</option>
+        <option value="ექსკლუზივი">ექსკლუზივი</option>
+        </select>
+        <InputError class="mt-2" :message="form.errors.membership_type" />
+    </div>
 
         <div class="flex items-center justify-end mt-4">
             <Link

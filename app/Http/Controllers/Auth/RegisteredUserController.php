@@ -35,6 +35,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'membership_type' => $request->membership_type,
             'role' => 'member', // Set default role
             'status' => 'pending', // Set status to pending
             'rating' => 1500,

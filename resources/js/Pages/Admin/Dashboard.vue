@@ -123,6 +123,7 @@
                       <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tl-lg">სახელი</th>
                       <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">ელ-ფოსტა</th>
                       <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">ტელეფონის ნომერი</th>
+                      <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider">საწევროს სტატუსი</th>
                       <th class="px-6 py-4 text-left text-sm font-bold text-slate-700 uppercase tracking-wider rounded-tr-lg">QR კოდი</th>
                     </tr>
                   </thead>
@@ -131,6 +132,7 @@
                       <td class="px-6 py-4 whitespace-nowrap font-medium text-slate-900">{{ user.name }}</td>
                       <td class="px-6 py-4 whitespace-nowrap text-slate-700">{{ user.email }}</td>
                       <td class="px-6 py-4 whitespace-nowrap text-slate-700">{{ user.phone || 'N/A' }}</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-slate-700">{{ user.membership_type }}</td>
                       <td class="px-6 py-4 whitespace-nowrap">
                         <a :href="`/api/user/${user.id}/qrcode`" 
                            download 
