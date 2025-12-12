@@ -79,6 +79,7 @@
                       <td class="px-6 py-4 whitespace-nowrap font-medium text-slate-900">{{ user.name }}</td>
                       <td class="px-6 py-4 whitespace-nowrap text-slate-700">{{ user.email }}</td>
                       <td class="px-6 py-4 whitespace-nowrap text-slate-700">{{ user.phone || 'N/A' }}</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-slate-700">{{ user.membership_type }}</td>
                       <td class="px-6 py-4 whitespace-nowrap">
                         <button @click="approveUser(user.id)" 
                                 class="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded-lg mr-2 text-sm shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">

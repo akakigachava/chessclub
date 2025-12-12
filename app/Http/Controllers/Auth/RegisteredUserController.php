@@ -39,6 +39,7 @@ class RegisteredUserController extends Controller
             'role' => 'member', // Set default role
             'status' => 'pending', // Set status to pending
             'rating' => 1500,
+            'membership_type' => $request->membership_type
         ]);
 
         event(new Registered($user));
