@@ -375,7 +375,7 @@
                             <a
                                 href="#"
                                 class="hover:text-purple-400 transition-colors"
-                                >დაგვיקავშირდით</a
+                                >დაგვიკავშირდით</a
                             >
                         </div>
                     </div>
