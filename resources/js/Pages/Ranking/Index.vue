@@ -66,6 +66,15 @@ const clearSearch = () => {
   searchQuery.value = ''
 }
 
+const deleteUser = (userId) => {
+  if (confirm('დარწმუნებული ხართ, რომ გსურთ წევრის წაშლა?')) {
+    router.delete(`/users/${userId}`, {
+      preserveScroll: true,
+    
+    })
+  }
+}
+
 const toggleVip = (userId) => {
   router.patch(`/admin/users/${userId}/toggle-vip`, {}, {
     preserveScroll: true,
@@ -202,6 +211,13 @@ const toggleVip = (userId) => {
                   class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
                 >
                   მონაცემთა შეცვლა
+                </button>
+
+                <button
+                  @click="deleteUser(user.id)" 
+                  class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
+                >
+                  წევრობის გაუქმება
                 </button>
               </div>
             </td>

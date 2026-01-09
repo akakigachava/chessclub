@@ -61,7 +61,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
         $tournaments = Tournament::withCount('registrations')->get();
         return Inertia::render('Admin/Tournaments', compact('tournaments'));
     });
+
 });
+
+Route::delete('/users/{user}', [RatingController::class, 'destroy'])
+    ->middleware(['auth', 'admin'])
+    ->name('users.destroy');
 
 
 

@@ -31,4 +31,22 @@ class RatingController extends Controller
 
         return redirect()->back()->with('success', 'User updated successfully');
     }
+
+    public function destroy(User $user)
+    {
+        try {
+
+            if ($user->role === 'admin') {
+                return back()->with('error', 'ადმინისტრატორის წაშლა შეუძლებელია');
+            }
+
+            $userName = $user->name;
+            $user->delete();
+
+            return back()->with('success', "წევრი {$userName} წარმატებით წაიშალა");
+        
+        } catch (\Exception $e) {
+            return back()->with('error', 'წევრის წაშლისას მოხდა შეცდომა');
+        }
+    }
 }
